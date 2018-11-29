@@ -2,6 +2,13 @@ cmake_minimum_required(VERSION 2.8)
  
 PROJECT(cmake2)
 
+option(USE_SQRT  "Set to switch to build use USE_SQRT"  ON)
+if(USE_SQRT)
+	add_definitions(-DUSE_SQRT)
+	message(STATUS "Use USE_SQRT")
+endif()
+
+
 #add all source current dir
 aux_source_directory(. DIR_SRCS)
 

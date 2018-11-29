@@ -15,8 +15,10 @@ int main(int argc, char *argv[]) {
 
 	double c = msqrt(a, b);
 	double d = msquare(a, b);
-
+#ifdef USE_SQRT
 	printf("sqrt(%f) + sqrt(%f) = %f\n", a, b, c);
+#else
 	printf("square(%f) + square(%f) = %f\n", a, b, d);
+#endif //USE_SQRT
 	return 0;
 }
