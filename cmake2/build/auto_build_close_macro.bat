@@ -1,4 +1,4 @@
-cmake -G "Visual Studio 15 2017 Win64"  ..
+cmake -G "Visual Studio 15 2017 Win64"  -DUSE_SQRT=OFF  ..
 cmake --build . --config Release
 cd Release
 cmake2.exe  16  9

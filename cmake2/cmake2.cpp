@@ -13,11 +13,13 @@ int main(int argc, char *argv[]) {
 	double a = atof(argv[1]);
 	double b = atof(argv[2]);
 
-	double c = msqrt(a, b);
-	double d = msquare(a, b);
 #ifdef USE_SQRT
+	double c = msqrt(a, b);
+	printf("APP Open Macro USE_SQRT\n");
 	printf("sqrt(%f) + sqrt(%f) = %f\n", a, b, c);
 #else
+	printf("APP Close Macro USE_SQRT\n");
+	double d = msquare(a, b);
 	printf("square(%f) + square(%f) = %f\n", a, b, d);
 #endif //USE_SQRT
 	return 0;
