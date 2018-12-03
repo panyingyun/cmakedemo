@@ -1,22 +1,22 @@
 cmake_minimum_required(VERSION 2.8)
  
-PROJECT(cmake2)
+PROJECT(cmake4)
 
-option(USE_SQRT  "Set to switch to build use USE_SQRT"  ON)
-if(USE_SQRT)
-	add_definitions(-DUSE_SQRT)
-	message(STATUS "APP OPEN MACROS USE_SQRT")
-endif()
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/ ${CMAKE_MODULE_PATH})
 
+message(${CMAKE_MODULE_PATH})
+message(${CMAKE_SOURCE_DIR})
+message(${PROJECT_SOURCE_DIR})
+
+find_package (SDL2 REQUIRED)
 
 #add all source current dir
 aux_source_directory(. DIR_SRCS)
 
-add_subdirectory(msqrt)
-add_subdirectory(msquare)
+include_directories(${SDL2_INCLUDE_DIR})
   
-add_executable(cmake2 MACOSX_BUNDLE cmake2.cpp)
+add_executable(cmake4 MACOSX_BUNDLE cmake4.cpp)
 
-target_link_libraries(cmake2 msqrt msquare)
+target_link_libraries(cmake4 ${SDL2_LIBRARY})
 
  
