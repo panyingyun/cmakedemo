@@ -1,59 +1,34 @@
-cmake_minimum_required(VERSION 2.8)
+#ref: https://www.cnblogs.com/csuftzzk/p/cmake_visual_sutdio_qt.html
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+PROJECT(cmake5)
+
+set(CMAKE_PREFIX_PATH "C:\\Qt\\Qt5.11.1\\5.11.1\\msvc2017_64\\")
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/ ${CMAKE_MODULE_PATH})
  
-PROJECT(cmake4)
-
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/ ${CMAKE_MODULE_PATH})
-
-message(${CMAKE_MODULE_PATH})
-message(${CMAKE_SOURCE_DIR})
-message(${PROJECT_SOURCE_DIR})
-
-find_package (SDL2 REQUIRED)
-
-#add all source current dir
-aux_source_directory(. DIR_SRCS)
-
-include_directories(${SDL2_INCLUDE_DIR})
+#############################################################################
+# Compiler and linker options
+ADD_DEFINITIONS(-Wall -DWIN32_LEAN_AND_MEAN)
+ 
+SET(CMAKE_AUTOMOC ON)
+SET(CMAKE_AUTORCC ON)
+SET(CMAKE_CXX_STANDARD 11)
+ 
+FILE(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+FILE(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
+FILE(GLOB FORMS "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
   
-add_executable(cmake4 MACOSX_BUNDLE cmake4.cpp)
-
-target_link_libraries(cmake4 ${SDL2_LIBRARY})
-
-cmake_minimum_required(VERSION 2.8)
-project(cmake5)
-#find QT libraries
-
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules/ ${CMAKE_MODULE_PATH})
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5SerialPort REQUIRED)
-
-
-
-aux_source_directory(. DIR_SRCS)
-SET(serialport_HEADERS ${AR_SOURCE_DIR}/serialport/serialport.h)
-QT5_WRAP_CPP(serialport_HEADERS_MOC ${serialport_HEADERS})
-
-
-#    ADD_DEFINITIONS(${Qt5Core_DEFINITIONS})
-#   add_definitions(${Qt5Widgets_DEFINITIONS})
-#   add_definitions(${Qt5SerialPort_DEFINITIONS})
-#   INCLUDE_DIRECTORIES(${Qt5Widgets_INCLUDE_DIRS} ${Qt5Core_INCLUDE_DIRS} ${Qt5SerialPort_INCLUDE_DIRS})
-#   INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
-
-qt5_wrap_ui(UI_HEADERS ${AR_SOURCE_DIR}/serialport/serialport.ui)
-
-
-message(" Qt5Widgets_INCLUDE_DIRS =${Qt5Widgets_INCLUDE_DIRS}     ")
-message(" Qt5Widgets_LIBRARIES =${Qt5Widgets_LIBRARIES}   ")
-
-message(" Qt5Core_INCLUDE_DIRS =${Qt5Core_INCLUDE_DIRS}   ")
-message(" Qt5Core_LIBRARIES =${Qt5Core_LIBRARIES}         ")
-
-message(" Qt5SerialPort_INCLUDE_DIRS =${Qt5SerialPort_INCLUDE_DIRS}")
-message(" Qt5SerialPort_LIBRARIES =${Qt5SerialPort_LIBRARIES}")
-
-
-add_executable(serialport ${serialport_SOURCES}  ${serialport_HEADERS_MOC}   ${serialport_HEADERS} ${UI_HEADERS}  )
-TARGET_LINK_LIBRARIES(serialport ${Qt5Core_LIBRARIES}  ${Qt5Widgets_LIBRARIES}  ${Qt5SerialPort_LIBRARIES})
+SET(RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/weatheranchorlayout.qrc") 
+   
+   
+#################################################################################
+# EXTERNAL LIBS
+FIND_PACKAGE(Qt5 COMPONENTS Core Widgets Gui REQUIRED)
+qt5_wrap_ui(UI_HEADERS ${FORMS})
+ 
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR}/)
+ 
+################################################################################
+# Compile target
+ADD_EXECUTABLE(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${UI_HEADERS} ${RESOURCES})
+# https://www.kdab.com/using-cmake-with-qt-5/
+qt5_use_modules(${PROJECT_NAME} Core Widgets Gui) 
