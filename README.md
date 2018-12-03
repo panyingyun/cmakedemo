@@ -6,9 +6,9 @@ CMakeLists.txt 一步一步如何写
 * cmake2 : 多个文件，多个目录。宏定义的开发和关闭
 * cmake3 : 依赖外部库1(SDL2库)：include_directories link_directories 写法
 * cmake4 : 依赖外部库2(SDL2库)：Findmake写法
-* cmake5 : 应用依赖QT5库（未完成）
-  备注：需要安装Qt Visual Studio Tool(工具-》扩展工具-》联机搜索QT即可找到对应的Tool)
-  C:\Qt\Qt5.11.1\5.11.1\msvc2017_64 编译链路
+* cmake5 : 应用依赖QT5库
+  备注：Visual Studio打开QT工程，需要安装Qt Visual Studio Tool(工具-》扩展工具-》联机搜索QT即可找到对应的Tool)
+  设置 QT option 为 C:\Qt\Qt5.11.1\5.11.1\msvc2017_64 编译链路
 * cmake6 : 应用依赖SDL2、OpenVR库
   
 
