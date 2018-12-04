@@ -9,7 +9,7 @@ CMakeLists.txt 一步一步如何写
 * cmake5 : 应用依赖QT5库
   备注：Visual Studio打开QT工程，需要安装Qt Visual Studio Tool(工具-》扩展工具-》联机搜索QT即可找到对应的Tool)
   设置 QT option 为 C:\Qt\Qt5.11.1\5.11.1\msvc2017_64 编译链路
-* cmake6 : 应用依赖SDL2、OpenVR库
+* cmake6 : 应用依赖SDL2、OpenVR库  Thanks to matinas  https://github.com/matinas
   
 
 
