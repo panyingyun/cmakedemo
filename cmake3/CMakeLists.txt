@@ -13,7 +13,7 @@ include_directories(${CMAKE_SOURCE_DIR}/SDL2-2.0.9/include)
 
 link_directories(${CMAKE_SOURCE_DIR}/SDL2-2.0.9/lib/x64)
   
-add_executable(cmake3 MACOSX_BUNDLE cmake3.cpp)
+add_executable(cmake3 MACOSX_BUNDLE ${DIR_SRCS})
 
 target_link_libraries(cmake3 SDL2 SDL2main)
 

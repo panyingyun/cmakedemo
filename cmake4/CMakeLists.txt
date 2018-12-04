@@ -15,7 +15,7 @@ aux_source_directory(. DIR_SRCS)
 
 include_directories(${SDL2_INCLUDE_DIR})
   
-add_executable(cmake4 MACOSX_BUNDLE cmake4.cpp)
+add_executable(cmake4 MACOSX_BUNDLE ${DIR_SRCS})
 
 target_link_libraries(cmake4 ${SDL2_LIBRARY})
 
