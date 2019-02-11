@@ -23,9 +23,9 @@ target_link_libraries(${PROJECT_NAME} msqrt msquare)
 
 #set(CMAKE_CXX_COMPILER      "clang++" )         # 显示指定使用的C++编译器
 
-set(CMAKE_CXX_FLAGS   "-g -std=c++11 -Wall")
+set(CMAKE_CXX_FLAGS   " -std=c++11 -Wall")
 
-set(CMAKE_CXX_FLAGS_DEBUG   "-O0" )             # 调试包不优化
+set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g" )             # 调试包不优化
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG " )   # release包优化
 set(CMAKE_VERBOSE_MAKEFILE on)
  
